@@ -3,350 +3,869 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Clínica Podológica Melanie</title>
+  <title>Clínica Podológica Melanie Estepa</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
     rel="stylesheet"
   />
   <style>
-    body {
-      font-family: "Roboto", sans-serif;
+    :root {
+      /* Colores extraídos del logo */
+      --primary: #217b8a; /* Verde azulado / Teal principal */
+      --primary-light: #2b9aa0;
+      --primary-dark: #165662;
+      --accent-bg: #eaf3f5;
+      --text-main: #2c3e50;
+      --text-muted: #5a6c7d;
+      --bg-color: #ffffff;
+      --font-body: 'Montserrat', sans-serif;
+      --font-heading: 'Playfair Display', serif;
+      --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 10px 25px rgba(33, 123, 138, 0.1);
+      --shadow-lg: 0 20px 40px rgba(33, 123, 138, 0.15);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      color: #333;
-      line-height: 1.6;
+    }
+
+    html {
       scroll-behavior: smooth;
     }
 
-    nav {
-      background-color: #2c3e50;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      text-align: center;
-    }
-    nav a {
-      display: inline-block;
-      color: white;
-      padding: 15px 20px;
-      transition: 0.3s;
-      font-weight: bold;
-    }
-    nav a:hover {
-      background-color: #27ae60;
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.7;
+      overflow-x: hidden;
     }
 
-    header {
-      position: relative;
-      background-image: url("https://copomur.es/wp-content/uploads/2024/10/therapist-hands-protective-gloves-massaging-woman-s-feet.jpg");
-      background-position: center;
-      background-size: cover;
-      padding: 120px 20px 80px;
-      color: white;
-      overflow: hidden;
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      color: var(--primary-dark);
+      font-weight: 600;
     }
-    header .overlay {
-      position: absolute;
-      inset: 0;
-      background-color: rgba(0, 0, 0, 0.25);
-      z-index: 0;
+
+    a {
+      text-decoration: none;
+      color: inherit;
     }
-    .header-container {
-      position: relative;
+
+    /* --- Navigation --- */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 5%;
+      transition: var(--transition);
+    }
+
+    .nav-logo {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      text-align: left;
-      margin-bottom: 20px;
-      z-index: 1;
+      gap: 15px;
     }
-    .logo {
-      width: 80px;
-      height: auto;
+
+    .nav-logo img {
+      height: 50px;
+      width: auto;
     }
-    .title-group {
-      z-index: 1;
+
+    .nav-title {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--primary-dark);
+      letter-spacing: 0.5px;
     }
-    .title-group h1 {
-      font-size: 3em;
-      margin-bottom: 10px;
-      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      align-items: center;
     }
-    .title-group p {
-      font-size: 1.3em;
-      margin: 0;
-      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-main);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      transition: var(--transition);
     }
-    .button {
-      display: inline-block;
-      padding: 12px 30px;
-      background-color: #27ae60;
-      color: white;
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: var(--primary);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .btn-nav {
+      background-color: var(--primary);
+      color: white !important;
+      padding: 10px 24px;
       border-radius: 30px;
-      font-weight: bold;
-      transition: 0.3s;
-      text-decoration: none;
-      z-index: 1;
+      font-weight: 600;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-nav::after {
+      display: none;
+    }
+
+    .btn-nav:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* --- Hero Section --- */
+    header {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 5% 60px;
+      position: relative;
+      background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(234,243,245,0.9) 100%),
+                  url("https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80") center/cover;
+    }
+
+    .hero-content {
+      max-width: 600px;
+      z-index: 2;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-body);
+      color: var(--primary);
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      display: block;
+      animation: fadeInDown 1s ease-out;
+    }
+
+    .hero-content h1 {
+      font-size: 4rem;
+      line-height: 1.1;
+      margin-bottom: 25px;
+      color: var(--primary-dark);
+      animation: fadeInUp 1s ease-out 0.2s both;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+      animation: fadeInUp 1s ease-out 0.4s both;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background-color: var(--primary);
+      color: white;
+      padding: 16px 40px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+      animation: fadeInUp 1s ease-out 0.6s both;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      background-color: transparent;
+      color: var(--primary);
+      padding: 14px 40px;
+      border-radius: 50px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      border: 2px solid var(--primary);
+      margin-left: 15px;
+      transition: var(--transition);
+      animation: fadeInUp 1s ease-out 0.8s both;
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    /* --- Sections General --- */
+    section {
+      padding: 100px 5%;
       position: relative;
     }
-    .button:hover {
-      background-color: #2ecc71;
-      transform: scale(1.05);
+
+    .section-header {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 60px;
     }
 
-    section {
-      padding: 80px 20px;
-      max-width: 1200px;
-      margin: auto;
-    }
-    section h2 {
-      text-align: center;
-      font-size: 2.5em;
+    .section-header h2 {
+      font-size: 2.8rem;
       margin-bottom: 20px;
-      color: #27ae60;
-    }
-    section p {
-      text-align: center;
-      font-size: 1.1em;
-      max-width: 800px;
-      margin: 0 auto 40px;
+      position: relative;
+      display: inline-block;
     }
 
-    .services {
+    .section-header h2::after {
+      content: '';
+      position: absolute;
+      width: 60px;
+      height: 3px;
+      background-color: var(--primary);
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    .section-header p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+    }
+
+    /* --- About Us --- */
+    #sobre-nosotros {
+      background-color: var(--bg-color);
       display: flex;
+      align-items: center;
+      gap: 60px;
+      justify-content: center;
       flex-wrap: wrap;
-      gap: 30px;
+    }
+
+    .about-image {
+      flex: 1;
+      min-width: 300px;
+      max-width: 500px;
+      position: relative;
+    }
+
+    .about-image img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .about-image::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      width: 100%;
+      height: 100%;
+      border: 3px solid var(--primary-light);
+      border-radius: 20px;
+      z-index: -1;
+    }
+
+    .about-content {
+      flex: 1;
+      min-width: 300px;
+      max-width: 600px;
+    }
+
+    .about-content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 25px;
+      color: var(--primary-dark);
+    }
+
+    .about-content p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .values-list {
+      list-style: none;
+      margin-top: 30px;
+    }
+
+    .values-list li {
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-weight: 500;
+    }
+
+    .values-list li svg {
+      width: 24px;
+      height: 24px;
+      fill: var(--primary);
+    }
+
+    /* --- Services --- */
+    #servicios {
+      background-color: var(--accent-bg);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .service-card {
+      background: white;
+      padding: 50px 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      border-bottom: 4px solid transparent;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+      border-bottom: 4px solid var(--primary);
+    }
+
+    .service-icon {
+      width: 80px;
+      height: 80px;
+      background-color: var(--accent-bg);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto 25px;
+      transition: var(--transition);
+    }
+
+    .service-card:hover .service-icon {
+      background-color: var(--primary);
+    }
+
+    .service-icon img {
+      width: 40px;
+      filter: invert(36%) sepia(51%) saturate(583%) hue-rotate(143deg) brightness(92%) contrast(89%); /* Approx Primary Color */
+      transition: var(--transition);
+    }
+
+    .service-card:hover .service-icon img {
+      filter: brightness(0) invert(1);
+    }
+
+    .service-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+
+    .service-card p {
+      color: var(--text-muted);
+      margin-bottom: 25px;
+      font-size: 0.95rem;
+    }
+
+    .service-link {
+      color: var(--primary);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .service-link::after {
+      content: '→';
+      transition: transform 0.3s;
+    }
+
+    .service-link:hover::after {
+      transform: translateX(5px);
+    }
+
+    /* --- Contact --- */
+    #contacto {
+      background-color: white;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1.2fr 1.5fr;
+      background: white;
+      border-radius: 20px;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+
+    .contact-info {
+      background-color: var(--primary);
+      color: white;
+      padding: 50px 40px;
+      display: flex;
+      flex-direction: column;
       justify-content: center;
     }
-    .service {
-      background-color: #f9f9f9;
-      border-radius: 15px;
-      padding: 30px 20px;
-      width: 250px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s;
+
+    .contact-info h3 {
+      color: white;
+      font-size: 2rem;
+      margin-bottom: 30px;
     }
-    .service:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      margin-bottom: 30px;
     }
-    .service img {
-      width: 60px;
-      margin-bottom: 15px;
+
+    .info-item svg {
+      width: 24px;
+      height: 24px;
+      fill: white;
+      flex-shrink: 0;
+      margin-top: 5px;
     }
-    .service h3 {
-      margin-bottom: 15px;
-      color: #333;
+
+    .info-item p {
+      font-size: 1rem;
+      line-height: 1.6;
+      opacity: 0.9;
     }
-    .service p {
-      font-size: 0.95em;
-      margin-bottom: 20px;
+
+    .contact-form-container {
+      padding: 50px 40px;
     }
 
     .contact-form {
-      max-width: 600px;
-      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .form-group {
       display: flex;
       flex-direction: column;
-      gap: 15px;
     }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .contact-form label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-main);
+    }
+
     .contact-form input,
+    .contact-form select,
     .contact-form textarea {
-      padding: 12px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 1em;
-      width: 100%;
-      box-sizing: border-box;
-    }
-    .contact-form button {
-      background-color: #27ae60;
-      color: white;
       padding: 15px;
-      border: none;
-      border-radius: 30px;
-      font-size: 1em;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .contact-form button:hover {
-      background-color: #2ecc71;
-      transform: scale(1.05);
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      background-color: #fcfcfc;
+      transition: var(--transition);
+      outline: none;
     }
 
-    #blog ul {
-      list-style: none;
-      padding: 0;
-      text-align: center;
-    }
-    #blog ul li {
-      margin: 10px 0;
-    }
-    #blog ul li a {
-      color: #27ae60;
-      font-weight: bold;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-    #blog ul li a:hover {
-      text-decoration: underline;
+    .contact-form input:focus,
+    .contact-form select:focus,
+    .contact-form textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(33, 123, 138, 0.1);
+      background-color: white;
     }
 
-    footer {
-      background-color: #2c3e50;
+    .contact-form button {
+      grid-column: 1 / -1;
+      background-color: var(--primary);
       color: white;
+      border: none;
+      padding: 18px;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: var(--font-body);
+      margin-top: 10px;
+    }
+
+    .contact-form button:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* --- Footer --- */
+    footer {
+      background-color: var(--primary-dark);
+      color: white;
+      padding: 60px 5% 30px;
       text-align: center;
-      padding: 30px 20px;
+    }
+
+    .footer-logo {
+      width: 120px;
+      margin-bottom: 20px;
+      filter: brightness(0) invert(1);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.8);
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .copyright {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 30px;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.9rem;
+    }
+
+    /* --- Animations --- */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 1200px) {
+      .contact-wrapper { grid-template-columns: 1fr; }
+      .contact-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        align-items: start;
+        padding: 40px;
+      }
+      .contact-info h3 { grid-column: 1 / -1; margin-bottom: 10px; }
+      .info-item { margin-bottom: 10px; }
+    }
+
+    @media (max-width: 992px) {
+      .hero-content h1 { font-size: 3rem; }
+      #sobre-nosotros { flex-direction: column; text-align: center; }
+      .values-list li { justify-content: center; }
+      .about-image { margin-bottom: 40px; }
     }
 
     @media (max-width: 768px) {
-      .services {
-        flex-direction: column;
-        align-items: center;
-      }
-      .header-container {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
+      .nav-links { display: none; /* In a real app, add a hamburger menu */ }
+      .nav-title { display: none; }
+      .hero-content h1 { font-size: 2.5rem; }
+      header { text-align: center; }
+      .btn-secondary { margin-left: 0; margin-top: 15px; }
+      .contact-info { grid-template-columns: 1fr; }
+      .contact-form { grid-template-columns: 1fr; }
+      .section-header h2 { font-size: 2.2rem; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="overlay"></div>
-    <div class="header-container">
-      <img
-        src="https://i.imgur.com/gHldlJa.png"
-        alt="Logo Clínica"
-        class="logo"
-      />
-      <div class="title-group">
-        <h1>Clínica Podológica Melanie</h1>
-        <p>Cuidamos de tus pies con profesionalidad en Andújar.</p>
-      </div>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <!-- Using the logo provided by the user -->
+      <img src="https://i.imgur.com/gHldlJa.png" alt="Logo Clínica Podológica Melanie Estepa" />
+      <span class="nav-title">Clínica Podológica Melanie Estepa</span>
+    </a>
+    <div class="nav-links">
+      <a href="#inicio">Inicio</a>
+      <a href="#sobre-nosotros">La Clínica</a>
+      <a href="#servicios">Tratamientos</a>
+      <a href="#blog">Blog</a>
+      <a href="#contacto" class="btn-nav">Cita Online</a>
     </div>
-    <div style="text-align: center; margin-top: 20px;">
-      <a href="#contacto" class="button">Pide tu cita</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <header id="inicio">
+    <div class="hero-content">
+      <span class="hero-subtitle">Salud y Bienestar</span>
+      <h1>Pasos firmes hacia tu salud podológica</h1>
+      <p>Cuidamos de tus pies con profesionalidad, tecnología avanzada y un trato humano inigualable en Andújar.</p>
+      <div>
+        <a href="#contacto" class="btn-primary">Pide tu cita hoy</a>
+        <a href="#servicios" class="btn-secondary">Nuestros Servicios</a>
+      </div>
     </div>
   </header>
 
-  <nav>
-    <a href="#inicio">Inicio</a>
-    <a href="#sobre-nosotros">Sobre nosotros</a>
-    <a href="#servicios">Servicios</a>
-    <a href="#contacto">Cita online</a>
-    <a href="#blog">Blog</a>
-  </nav>
-
-  <section id="inicio">
-    <h2>Bienvenido a nuestra clínica</h2>
-    <p>
-      Ofrecemos atención especializada para el cuidado de tus pies con
-      profesionalidad, tecnología avanzada y un trato cercano. Tu salud
-      podológica es nuestra prioridad.
-    </p>
-  </section>
-
+  <!-- About Us Section -->
   <section id="sobre-nosotros">
-    <h2>Sobre nosotros</h2>
-    <p>
-      Soy Melanie Estepa, especialista en podología. En nuestra clínica
-      combinamos profesionalidad, cercanía e innovación para cuidar la salud de
-      tus pies.
-    </p>
-    <h3 style="text-align: center;">Valores</h3>
-    <ul style="list-style: none; padding: 0; text-align: center;">
-      <li>✅ Profesionalidad</li>
-      <li>✅ Cercanía</li>
-      <li>✅ Innovación</li>
-    </ul>
+    <div class="about-image">
+      <img src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Melanie Estepa - Especialista en Podología" />
+    </div>
+    <div class="about-content">
+      <h2>Especialistas en la salud de tus pies</h2>
+      <p>Soy <strong>Melanie Estepa</strong>, especialista dedicada a la podología integral. Entendemos que tus pies son la base de tu bienestar diario.</p>
+      <p>En nuestra clínica, combinamos la calidez de un trato cercano con la innovación de los últimos tratamientos podológicos para garantizarte una recuperación rápida y eficaz.</p>
+      
+      <ul class="values-list">
+        <li>
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+          <strong>Profesionalidad</strong> y atención meticulosa
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+          <strong>Cercanía</strong> para tu máxima tranquilidad
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+          <strong>Innovación</strong> en equipos y diagnósticos
+        </li>
+      </ul>
+    </div>
   </section>
 
+  <!-- Services Section -->
   <section id="servicios">
-    <h2>Servicios</h2>
-    <div class="services">
-      <div class="service">
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/2331/2331900.png"
-          alt="Quiropodia"
-        />
+    <div class="section-header">
+      <h2>Tratamientos Especializados</h2>
+      <p>Ofrecemos una amplia gama de servicios podológicos diseñados para prevenir y tratar cualquier afección de tus pies.</p>
+    </div>
+    
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/2331/2331900.png" alt="Quiropodia" />
+        </div>
         <h3>Quiropodia</h3>
-        <p>Cuidado de uñas, callos y durezas para aliviar molestias y dolor.</p>
-        <a href="#contacto" class="button">Solicitar cita</a>
+        <p>Eliminación de callos y durezas para aliviar molestias y mantener la salud del pie.</p>
+        <a href="#contacto" class="service-link">Pedir cita</a>
       </div>
-      <div class="service">
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/2942/2942628.png"
-          alt="Ortopodología"
-        />
-        <h3>Ortopodología</h3>
-        <p>Plantillas personalizadas y estudios biomecánicos para tus pies.</p>
-        <a href="#contacto" class="button">Solicitar cita</a>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/3063/3063200.png" alt="Onicocriptosis" />
+        </div>
+        <h3>Onicocriptosis</h3>
+        <p>Tratamiento efectivo para uñas encarnadas, aliviando el dolor y previniendo infecciones.</p>
+        <a href="#contacto" class="service-link">Pedir cita</a>
       </div>
-      <div class="service">
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/3763/3763209.png"
-          alt="Estudios de la pisada"
-        />
-        <h3>Estudios de la pisada</h3>
-        <p>Análisis profesional para prevenir lesiones y mejorar tu postura.</p>
-        <a href="#contacto" class="button">Solicitar cita</a>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/3752/3752989.png" alt="Papilomas" />
+        </div>
+        <h3>Papilomas</h3>
+        <p>Diagnóstico y tratamiento especializado para verrugas plantares de forma segura.</p>
+        <a href="#contacto" class="service-link">Pedir cita</a>
       </div>
-      <div class="service">
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/3448/3448240.png"
-          alt="Recomendación de calzado"
-        />
-        <h3>Recomendación de calzado</h3>
-        <p>Asesoramiento experto para elegir el calzado adecuado a tu pie.</p>
-        <a href="#contacto" class="button">Solicitar cita</a>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/4807/4807695.png" alt="Pie Diabético" />
+        </div>
+        <h3>Pie Diabético</h3>
+        <p>Cuidado integral y prevención de complicaciones en pacientes con diabetes.</p>
+        <a href="#contacto" class="service-link">Pedir cita</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/2942/2942628.png" alt="Órtesis de silicona" />
+        </div>
+        <h3>Órtesis de silicona</h3>
+        <p>Confección a medida de separadores de dedos y protectores para aliviar presiones.</p>
+        <a href="#contacto" class="service-link">Pedir cita</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon">
+          <img src="https://cdn-icons-png.flaticon.com/512/5029/5029410.png" alt="Micosis" />
+        </div>
+        <h3>Micosis</h3>
+        <p>Tratamiento eficaz contra los hongos en los pies y las uñas para devolver su aspecto sano.</p>
+        <a href="#contacto" class="service-link">Pedir cita</a>
       </div>
     </div>
   </section>
 
+  <!-- Contact Section -->
   <section id="contacto">
-    <h2>Cita online / Contacto</h2>
-    <form
-      class="contact-form"
-      action="https://formspree.io/f/xldlkney"
-      method="POST"
-    >
-      <input type="text" name="nombre" placeholder="Nombre" required />
-      <input type="email" name="email" placeholder="Email" required />
-      <input type="tel" name="telefono" placeholder="Teléfono" required />
-      <input type="text" name="servicio" placeholder="Servicio deseado" required />
-      <input type="date" name="fecha" placeholder="Fecha preferida" required />
-      <textarea name="comentarios" placeholder="Comentarios" rows="4"></textarea>
-      <button type="submit">Enviar solicitud</button>
-    </form>
-    <p style="text-align: center; margin-top: 20px;">
-      Dirección: Calle Calancha, 9 y 13, 23740 Andújar, Jaén | Tel:
-      633 694 766 | Email: melaniepodologa@gmail.com
-    </p>
+    <div class="section-header">
+      <h2>Pide tu Cita</h2>
+      <p>Estamos aquí para ayudarte. Rellena el formulario o contáctanos directamente a través de nuestros canales oficiales.</p>
+    </div>
+
+    <div class="contact-wrapper">
+      <div class="contact-info">
+        <h3>Información</h3>
+        
+        <div class="info-item">
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          <div>
+            <strong>Dirección</strong>
+            <p>Calle de Margarita Corcoles Aldehuela, 48<br>23740 Andújar, Jaén</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          <div>
+            <strong>Teléfono y WhatsApp</strong>
+            <p>614 12 04 15</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          <div>
+            <strong>Email</strong>
+            <p>Melanie.podologa@gmail.com</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2zm-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6zm9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25zM12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+          <div>
+            <strong>Instagram</strong>
+            <p>@Podología.melanieestepa</p>
+          </div>
+        </div>
+
+        <div class="info-item" style="margin-top: 20px;">
+          <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+          <div>
+            <strong>Horarios</strong>
+            <p style="font-size: 0.85rem; margin-top: 5px;">
+              <strong>Invierno:</strong><br>
+              Lunes, Miércoles y Jueves: 9:30-13:30 / 16:30-19:30<br>
+              Martes: 16:30-19:30 | Viernes: 9:30-13:30<br><br>
+              <strong>Verano:</strong><br>
+              Lunes a Viernes: 8:30-14:30
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form-container">
+        <form class="contact-form" action="https://formspree.io/f/xldlkney" method="POST">
+          <div class="form-group">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ej. Tu Nombre" required />
+          </div>
+          
+          <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="Ej. 600 000 000" required />
+          </div>
+
+          <div class="form-group full-width">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" placeholder="tu@email.com" required />
+          </div>
+
+          <div class="form-group">
+            <label for="servicio">Servicio deseado</label>
+            <select id="servicio" name="servicio" required>
+              <option value="" disabled selected>Selecciona una opción</option>
+              <option value="Quiropodia">Quiropodia</option>
+              <option value="Onicocriptosis">Onicocriptosis (Uñas encarnadas)</option>
+              <option value="Papilomas">Papilomas</option>
+              <option value="Pie Diabético">Pie Diabético</option>
+              <option value="Órtesis de silicona">Órtesis de silicona</option>
+              <option value="Micosis">Micosis en piel y uñas</option>
+              <option value="Consulta General">Consulta General</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="fecha">Fecha preferida</label>
+            <input type="date" id="fecha" name="fecha" required />
+          </div>
+
+          <div class="form-group full-width">
+            <label for="comentarios">Mensaje o síntomas</label>
+            <textarea id="comentarios" name="comentarios" placeholder="Cuéntanos brevemente el motivo de tu consulta..." rows="4"></textarea>
+          </div>
+
+          <button type="submit">Solicitar Cita</button>
+        </form>
+      </div>
+    </div>
   </section>
 
-  <section id="blog">
-    <h2>Blog</h2>
-    <p>Últimas entradas y consejos para cuidar tus pies.</p>
-    <ul>
-      <li><a href="#">¿Qué es una quiropodia y cuándo la necesitas?</a></li>
-      <li><a href="#">Consejos para elegir el calzado ideal</a></li>
-      <li><a href="#">Cómo evitar ampollas en tus caminatas</a></li>
-      <li><a href="#">Importancia de los estudios biomecánicos</a></li>
-    </ul>
-  </section>
-
+  <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Clínica Podológica Melanie. Todos los derechos reservados.</p>
+    <img src="https://i.imgur.com/gHldlJa.png" alt="Logo Melanie Estepa" class="footer-logo" />
+    <div class="footer-links">
+      <a href="#inicio">Inicio</a>
+      <a href="#sobre-nosotros">Nosotros</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2026 Clínica Podológica Melanie Estepa. Todos los derechos reservados.</p>
+    </div>
   </footer>
+
 </body>
 </html>
-
-
