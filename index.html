@@ -615,9 +615,25 @@
     }
 
     @media (max-width: 768px) {
-      .nav-links { display: none; /* In a real app, add a hamburger menu */ }
-      .nav-title { display: none; }
-      .hero-content h1 { font-size: 2.5rem; }
+      .nav-links { display: none; }
+      
+      /* Adaptación del título del menú para móviles */
+      .nav-title { 
+        display: block; 
+        font-size: 1.05rem; 
+        line-height: 1.2;
+      }
+
+      .nav-logo img {
+        height: 40px;
+      }
+
+      /* Reducción del tamaño del título del Hero */
+      .hero-content h1 { 
+        font-size: 2.1rem; 
+        line-height: 1.25;
+      }
+
       header { text-align: center; }
       .btn-secondary { margin-left: 0; margin-top: 15px; }
       .contact-info { grid-template-columns: 1fr; }
@@ -631,7 +647,6 @@
   <!-- Navigation -->
   <nav>
     <a href="#" class="nav-logo">
-      <!-- Using the logo provided by the user -->
       <img src="https://i.imgur.com/gHldlJa.png" alt="Logo Clínica Podológica Melanie Estepa" />
       <span class="nav-title">Clínica Podológica Melanie Estepa</span>
     </a>
